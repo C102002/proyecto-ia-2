@@ -6,6 +6,12 @@ __pycache__/
 # data extensions
 /data
 
+# Ignorar cualquier ruta que contenga “data” (case-insensitive)
+*[Dd]ata*
+
+# Asegura además que, si es carpeta, se ignoren también sus contenidos
+**/*[Da]at*/**
+
 # C extensions
 *.so
 
