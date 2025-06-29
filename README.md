@@ -71,7 +71,7 @@ Although the standard Wine Quality Dataset does not include missing values, in r
 1. Clone the project on your computer:
 
    ```bash
-   git clone https://github.com/C102002/proyecto-ia-1
+   git clone https://github.com/C102002/proyecto-ia-2
    ```
 
 >[!NOTE]  
@@ -115,6 +115,12 @@ Although the standard Wine Quality Dataset does not include missing values, in r
    ```bash
    # Run the following command to update the requirements file:
    pip freeze > requirements.txt
+   ```
+
+   NT
+   ```bash
+   # Run this if the requirements file appears with strage values
+   pip freeze | Out-File requirements.txt -Encoding utf8
    ```
 
 
