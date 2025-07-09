@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 def configs(text):
-    loaded_model_path = r"C:/Users/User/Documents/Universidad/10mo-semestre/Inteligencia Artificial/Practica/proyecto-2/proyecto-ia-2/modelo_sentimientos"
+    loaded_model_path = r"../../modelo_sentimientos"
 
     tokenizer = AutoTokenizer.from_pretrained(loaded_model_path)
     model = AutoModelForSequenceClassification.from_pretrained(loaded_model_path)
