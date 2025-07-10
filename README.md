@@ -167,6 +167,10 @@ Video of example of correct usage
 
 [![Alternative text of usage image](./public/videos/example/example-of-usage.gif)](./public/videos/example/example-of-usage.mp4)
 
+## 8. Architecture
+
+[![Alternative text of architecture image](./public/images/photos/Diseño%20General%20de%20Sistema%20de%20Reconocimiento%20de%20Texto%20en%20Imágenes-2025-07-10-0128.svg)](./public/images/photos/Diseño%20General%20de%20Sistema%20de%20Reconocimiento%20de%20Texto%20en%20Imágenes-2025-07-10-0128.svg)
+
 
 ## Contributions
 
