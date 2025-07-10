@@ -130,7 +130,7 @@ On going...
 
 7. Example of usage
 
-[![Alternative text of usage image](./public/videos/example/example-of-usage.gif)](./public/videos/example/example-of-usage.gif)
+[![Alternative text of usage image](./public/videos/example/example-of-usage.gif)](./public/videos/example/example-of-usage.mp4)
 
 
 ## Contributions
