@@ -1,24 +1,106 @@
+import warnings
+import time
+import questionary
+
+from app.extra.info import info_about_us, info
+from app.extra.instrucctions import instrucctions
+from app.extra.language import language_choice
+from app.extra.image import image_choice, get_test_path
 from app.models.str import transcription
-from app.models.sam  import configs
-from pathlib import Path
+from app.models.sam import configs
 
-def analysis_of_sentiments():
-    extensiones_image = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
-    
-    image_path = input('Load your image path: ')
-    archivo = Path(image_path).expanduser().resolve()
+from rich.console import Console
+from rich.panel import Panel
+from rich import box
 
-    if not archivo.exists():
-        print(f"File not found: {archivo}")
-        return
+console = Console()
 
-    if archivo.suffix.lower() in extensiones_image:
-        text = transcription(image_path)
-        result = configs(text)
-        return result
-    else:
-        print("The file is not a supported image format.")
+warnings.filterwarnings(
+    "ignore",
+    message=".*pin_memory.*",
+    category=UserWarning,
+    module="torch.utils.data.dataloader"
+)
 
-    return
+def menu():
+    # 1) Spinner de carga
+    with console.status("[bold green]Cargando menú...[/bold green]", spinner="dots"):
+        time.sleep(1)
+    console.clear()
 
-analysis_of_sentiments()
+    # 1.1) Instrucciones de navegación
+    console.print(
+        "[bold cyan]🡅🡇 Usa las flechas arriba/abajo y presiona Enter para navegar el menú[/bold cyan]\n"
+    )
+
+    # 2) Menú interactivo
+    while True:
+        option = questionary.select(
+            "Bienvenido, ¿qué desea hacer?",
+            choices=[
+                "1. Cargar imagen",
+                "2. Probar con un ejemplo",
+                "3. Instrucciones",
+                "4. ¿Quiénes somos?",
+                "5. Información de los modelos",
+                "6. Salir"
+            ],
+        ).ask()
+
+        if option is None or option == "6. Salir":
+            console.print(
+                Panel(
+                    "[bold white]Saliendo del Sistema de Reconocimiento de Texto en Imágenes\ny Análisis de Sentimiento.[/bold white]\n\n[bold cyan]¡Hasta pronto! 👋[/bold cyan]",
+                    title="[bold green]🚀 Adiós[/bold green]",
+                    border_style="green",
+                    box=box.ROUNDED,
+                    padding=(1, 2)
+                )
+            )
+            break
+
+        elif option == "5. Información de los modelos":
+            console.print(info())
+
+        elif option == "4. ¿Quiénes somos?":
+            console.print(info_about_us())
+
+        elif option == "3. Instrucciones":
+            console.print(instrucctions())
+
+        elif option == "2. Probar con un ejemplo":
+            test_path = get_test_path()
+            console.print(f"Ejemplo: {test_path}")
+            text = transcription(test_path, 'es')
+            configs(text)
+
+        elif option == "1. Cargar imagen":
+            language = language_choice()
+            path = image_choice()
+            console.print(f"Ruta seleccionada: {path}")
+            text = transcription(path, language)
+            configs(text)
+
+if __name__ == "__main__":
+    try:
+        menu()
+    except KeyboardInterrupt:
+        console.print(
+            Panel(
+                "[bold yellow]Interrupción con Ctrl+C detectada.\nCerrando programa.[/bold yellow]",
+                title="[yellow]⏸️ Interrupción[/yellow]",
+                border_style="yellow",
+                box=box.ROUNDED,
+                padding=(1, 2)
+            )
+        )
+    except Exception as e:
+        console.print(
+            Panel(
+                f"❌  [bold red]Ocurrió un error:[/bold red]\n{e}",
+                title="[red]Error[/red]",
+                border_style="red",
+                box=box.SQUARE,
+                padding=(1, 2)
+            )
+        )

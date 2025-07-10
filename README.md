@@ -124,11 +124,46 @@ Although the standard Wine Quality Dataset does not include missing values, in r
    ```
 
 
-6. Models 🍷
+## 6. Models ⚙️
 
-On going...
+### 🖼️ Optical Character Recognition (OCR) 📸🔠  
+**STR model [1]** trained and evaluated on the **IIIT-5K Words dataset [2]**.  
+Detects and transcribes words in images with varied fonts, sizes, and noise levels, producing a clean, ordered text string.
 
-7. Example of usage
+### 💬 Sentiment Analysis ❤️🖤  
+**Bidirectional LSTM RNN [3][4]** trained on the **Twitter Sentiment Dataset [5]**.  
+Classifies each extracted fragment as positive 😊, negative 😞, or neutral 😐, revealing the underlying intent and tone.
+
+---
+
+## 7. Application 🚀
+
+The final app ties both models into a simple pipeline: upload an image, extract its text, then analyze its sentiment.
+
+### Usage
+
+
+1. Example of usage
+
+```bash
+# In the root of the project
+python -m app.main 
+```
+
+Then wait a litle bit to show the main menu
+
+```bash
+? Bienvenido, ¿qué desea hacer? (Use arrow keys)
+ » 1. Cargar imagen
+   2. Probar con un ejemplo
+   3. Instrucciones
+   4. ¿Quiénes somos?
+   5. Informacion de los modelos
+   6. Salir
+```
+
+
+Video of example of correct usage
 
 [![Alternative text of usage image](./public/videos/example/example-of-usage.gif)](./public/videos/example/example-of-usage.mp4)
 
