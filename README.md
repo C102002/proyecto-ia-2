@@ -128,6 +128,10 @@ Although the standard Wine Quality Dataset does not include missing values, in r
 
 On going...
 
+7. Example of usage
+
+[![Alternative text of usage image](./public/videos/example/example-of-usage.gif)](./public/videos/example/example-of-usage.gif)
+
 
 ## Contributions
 
