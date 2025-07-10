@@ -1,8 +1,8 @@
 import easyocr
 
-def transcription(image_path):
+def transcription(image_path, language):
     try: 
-        reader = easyocr.Reader(['es', 'en'])
+        reader = easyocr.Reader([language])
         results = reader.readtext(image_path)
 
         text_detected = []  
