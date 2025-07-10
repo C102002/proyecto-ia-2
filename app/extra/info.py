@@ -1,41 +1,59 @@
+from rich.console import Console
+from rich.panel import Panel
+from rich.markdown import Markdown
+from rich.table import Table
+from rich import box
+
+console = Console()
+
 def info_about_us():
-    return (
-        "\n"
-        "📌 **¿Quiénes somos?**\n"
-        "\n"
-        "Somos estudiantes del último semestre de Ingeniería Informática, apasionados por la tecnología y la inteligencia artificial.\n"
-        "Nuestro equipo está conformado por:\n\n"
-        "  👤 Alfredo Fung\n"
-        "  👤 Daniel Bortot\n"
-        "  👤 Hualong Chan\n"
-        "  👤 Gabriela Martínez\n"
-        "  👤 Juan Perdomo\n"
-        "\n"
-        "Nos une el interés por desarrollar soluciones innovadoras y accesibles con impacto real en el mundo digital.\n"
+    """Imprime información del equipo en un panel estilizado."""
+    content = Markdown(
+        """
+**Somos estudiantes del último semestre de Ingeniería Informática**, apasionados por la tecnología y la inteligencia artificial.
+
+**Nuestro equipo está conformado por:**
+- 👤 Alfredo Fung
+- 👤 Daniel Bortot
+- 👤 Hualong Chan
+- 👤 Gabriela Martínez
+- 👤 Juan Perdomo
+
+Nos une el interés por **desarrollar soluciones innovadoras y accesibles** con impacto real en el mundo digital.
+        """
     )
+    panel = Panel(
+        content,
+        title="📌 ¿Quiénes somos?",
+        border_style="blue",
+        box=box.ROUNDED,
+        padding=(1, 2)
+    )
+    console.print(panel)
+
 
 def info():
-    return (
-        "\n📚 **Resumen de los modelos utilizados:**\n\n"
+    """Imprime un resumen de los modelos OCR y de Sentimiento en un panel con tabla."""
+    table = Table.grid(padding=1)
+    table.add_column("🔍 Modelo", style="bold")
+    table.add_column("Descripción", style="")
 
-        "🔠 **1. EasyOCR**\n"
-        "EasyOCR es una biblioteca de código abierto para el reconocimiento óptico de caracteres (OCR), "
-        "basada en modelos de deep learning con PyTorch. Permite extraer texto de imágenes en más de 80 idiomas.\n\n"
-        "🛠️ ¿Cómo funciona?\n"
-        "- Utiliza un detector de texto (como CRAFT) para encontrar regiones con texto.\n"
-        "- Luego aplica un modelo de reconocimiento (usualmente un CRNN: Convolutional Recurrent Neural Network) "
-        "para decodificar las letras dentro de cada región.\n\n"
-
-        "🔍 **2. Modelo de análisis de sentimientos**\n"
-        "Este modelo evalúa si un texto refleja una emoción positiva, negativa o neutral.\n"
-        "Dependiendo de la implementación, puede ser:\n"
-        "- Utiliza fine tunning con el moedelo Roberta, que se basa en el analisis de sentimientos\n"
-        "- **Transformers**: modelos preentrenados de lenguaje natural que entienden el contexto de las palabras.\n\n"
-
-        "🛠️ ¿Cómo funciona el análisis de sentimientos?\n"
-        "- Convierte el texto a vectores numéricos (tokenización y embeddings).\n"
-        "- El modelo evalúa el tono emocional con base en el entrenamiento previo (millones de textos).\n"
-        "- Devuelve una etiqueta: positiva, negativa o neutral (a veces también un porcentaje o puntuación).\n\n"
-
-        "💡 Estos dos modelos se complementan: EasyOCR convierte imágenes en texto, y el modelo de sentimientos analiza el contenido textual.\n"
+    table.add_row(
+        "🔠 EasyOCR (OCR)",
+        "- Extrae texto de imágenes en **80+ idiomas**.\n"
+        "- Usa detector (CRAFT) + CRNN para transcribir regiones de texto."
     )
+    table.add_row(
+        "💬 Sentiment Analysis",
+        "- Clasifica textos como **😊 positivo**, **😞 negativo** o **😐 neutral**.\n"
+        "- Basado en Transformers (p.ej. RoBERTa) con tokenización y embeddings."
+    )
+
+    panel = Panel(
+        table,
+        title="📚 Resumen de los modelos utilizados",
+        border_style="magenta",
+        box=box.ROUNDED,
+        padding=(1, 2)
+    )
+    console.print(panel)

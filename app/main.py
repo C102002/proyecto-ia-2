@@ -2,6 +2,7 @@ import warnings
 import time
 import questionary
 
+from app.common.farewell_panel import FAREWELL_PANEL
 from app.extra.info import info_about_us, info
 from app.extra.instrucctions import instrucctions
 from app.extra.language import language_choice
@@ -30,7 +31,7 @@ def menu():
 
     # 1.1) Instrucciones de navegación
     console.print(
-        "[bold cyan]🡅🡇 Usa las flechas arriba/abajo y presiona Enter para navegar el menú[/bold cyan]\n"
+        "[bold cyan]🡅 🡇 Usa las flechas arriba/abajo y presiona Enter para navegar el menú[/bold cyan]\n"
     )
 
     # 2) Menú interactivo
@@ -49,13 +50,7 @@ def menu():
 
         if option is None or option == "6. Salir":
             console.print(
-                Panel(
-                    "[bold white]Saliendo del Sistema de Reconocimiento de Texto en Imágenes\ny Análisis de Sentimiento.[/bold white]\n\n[bold cyan]¡Hasta pronto! 👋[/bold cyan]",
-                    title="[bold green]🚀 Adiós[/bold green]",
-                    border_style="green",
-                    box=box.ROUNDED,
-                    padding=(1, 2)
-                )
+                FAREWELL_PANEL
             )
             break
 
