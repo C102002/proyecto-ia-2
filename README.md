@@ -64,7 +64,8 @@ Although the standard Wine Quality Dataset does not include missing values, in r
 ## Requirements
 
 - Python
-- Dataset: The dataset was provided in the following link [Wine Quality](https://archive.ics.uci.edu/dataset/186/wine+quality)
+- Dataset OCR: The dataset was provided in the following link [OCR Images](https://www.kaggle.com/datasets/prathmeshzade/iiit5k-words/data)
+- Dasatet Sentiments: The dataset was provided in the following link [Sentiment dataset](https://github.com/garnachod/TwitterSentimentDataset)
 
 ## Installation
 
